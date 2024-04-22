@@ -91,7 +91,12 @@ int main(int argc, char* argv[])
     triple f13(50, 12.77, "cpp");
 
     f10 = f11;
-    fmp::swap(f11, f12);
+
+    const fmp::fuple<> cf1;
+    const fmp::fuple<> cf2;
+
+    f11.swap(f12);
+    cf1.swap(cf2);
 
     assert(fmp::get<double>(f8) == 11.06);
     assert(fmp::get<std::string>(f9) == "");

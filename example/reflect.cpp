@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
     static_assert(std::is_same_v<fmp::member_address_t<0, W>, const int*>);
     static_assert(std::is_same_v<fmp::member_address_t<1, W>, const std::string*>);
 
-    // get name of a field by its address
+    // get the name of a field by its address
 
     static_assert(fmp::member_stem<&W::key>() == "key");
     static_assert(fmp::member_stem<&W::val>() == "val");
@@ -97,7 +97,7 @@ int main(int argc, char* argv[])
     // get member names
     constexpr auto names = fmp::member_names_v<W>;
 
-    // get name of a field by index
+    // get the name of a field by index
 
     static_assert(fmp::get<0>(names) == "rank");
     static_assert(fmp::get<1>(names) == "key");
@@ -105,27 +105,27 @@ int main(int argc, char* argv[])
     static_assert(fmp::member_name_v<1, W> == "key");
     static_assert(fmp::member_name_v<2, W> == "val");
 
-    // get type of a field by index
+    // get the type of a field by index
 
     static_assert(std::is_same_v<fmp::member_t<0, W>, int>);
     static_assert(std::is_same_v<fmp::member_t<1, W>, std::string>);
 
-    // get name of a field by type
+    // get the name of a field by type
 
     static_assert(fmp::member_name<int, W>() == "rank");
     static_assert(fmp::member_name<std::string, W>() == "key");
 
-    // get index of a field by type
+    // get the index of a field by type
 
     static_assert(fmp::member_index_v<int, W> == 0);
     static_assert(fmp::member_index_v<std::string, W> == 1);
 
-    // get index of a field by name
+    // get the index of a field by name
 
     static_assert(fmp::member_index<W>("val") == 2);
     static_assert(fmp::member_index<W>("rank") == 0);
 
-    // get type of a field by name
+    // get the type of a field by name
 
     static_assert(std::is_same_v<fmp::member_t<fmp::member_index<W>("rank"), W>, int>);
     static_assert(std::is_same_v<fmp::member_t<fmp::member_index<W>("val"), W>, std::string>);
