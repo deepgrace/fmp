@@ -172,7 +172,7 @@ namespace fmp
     template <typename T>
     using object_t = typename object<T>::type;
 
-    template <typename T>
+    template <typename T, template <typename ...> typename pack = fuple>
     struct members
     {
         using U = std::remove_cvref_t<T>;
@@ -181,12 +181,18 @@ namespace fmp
         {
             auto [...args] = U();
 
-            return fuple<decltype(args)...>();
+            return pack<decltype(args)...>();
         }());
     };
 
+    template <typename T, template <typename ...> typename pack = fuple>
+    using members_t = typename members<T, pack>::type;
+
     template <typename T>
-    using members_t = typename members<T>::type;
+    using to_fuple_t = members_t<T>;
+
+    template <typename T>
+    using to_tuple_t = members_t<T, std::tuple>;
 
     template <typename T>
     struct member_pointers

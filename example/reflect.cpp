@@ -211,8 +211,11 @@ int main(int argc, char* argv[])
 
     // extract the member types
 
+    static_assert(std::is_same_v<fmp::to_fuple_t<Y>, fmp::fuple<int, double, char, X>>);
+    static_assert(std::is_same_v<fmp::to_tuple_t<Y>, std::tuple<int, double, char, X>>);
+
     static_assert(std::is_same_v<fmp::members_t<X>, fmp::fuple<float, std::string>>);
-    static_assert(std::is_same_v<fmp::members_t<Y>, fmp::fuple<int, double, char, X>>);
+    static_assert(std::is_same_v<fmp::members_t<X, std::tuple>, std::tuple<float, std::string>>);
 
     // extract the nth member pointer type
 
