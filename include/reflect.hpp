@@ -210,6 +210,12 @@ namespace fmp
     template <typename T>
     using member_pointers_t = typename member_pointers<T>::type;
 
+    template <size_t N, typename T>
+    constexpr decltype(auto) offset_of() noexcept
+    {
+        return visitor<members_t<std::remove_cvref_t<T>>>().template offset<N>();
+    }
+
     template <bool f, bool t, typename U>
     requires (!is_fuple_v<std::remove_cvref_t<U>> && !is_tuple_v<std::remove_cvref_t<U>>)
     static constexpr decltype(auto) expand(U&& u)

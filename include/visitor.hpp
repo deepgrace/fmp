@@ -76,26 +76,22 @@ namespace fmp
         requires (!is_fuple_v<std::remove_cvref_t<U>>)
         constexpr decltype(auto) get(U&& u) noexcept
         {
-            return [&]<size_t... N>(std::index_sequence<N...>)
-            {
-                auto& [...args] = u;
+            auto& [...args] = u;
 
-                if constexpr(f)
-                {
-                    if constexpr(t)
-                        return fmp::tie(args...);
-                    else
-                        return fmp::make_fuple(args...);
-                }
+            if constexpr(f)
+            {
+                if constexpr(t)
+                    return fmp::tie(args...);
                 else
-                {
-                    if constexpr(t)
-                        return std::tie(args...);
-                    else
-                        return std::make_tuple(args...);
-                }
+                    return fmp::make_fuple(args...);
             }
-            (std::make_index_sequence<value>());
+            else
+            {
+                if constexpr(t)
+                    return std::tie(args...);
+                else
+                    return std::make_tuple(args...);
+            }
         }
 
         static constexpr storage_t s{};

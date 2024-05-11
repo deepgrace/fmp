@@ -20,7 +20,7 @@
  *   time a set of code changes is merged to the master branch.
  */
 
-#define FMP_VERSION_NUMBER 3
+#define FMP_VERSION_NUMBER 4
 #define FMP_VERSION_STRING "fmp/" FMP_STRINGIZE(FMP_VERSION_NUMBER)
 
 #endif

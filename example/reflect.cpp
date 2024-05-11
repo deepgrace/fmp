@@ -136,6 +136,11 @@ int main(int argc, char* argv[])
     static_assert(fmp::search_index(1, 0, 1, 2, 3) == 1);
     static_assert(fmp::search_index("key"sv, "seq"sv, "value"sv, "id"sv) == 3);
 
+    // get the offset of a field by index
+
+    assert((fmp::offset_of<1, Y>() == 8));
+    assert((fmp::offset_of<2, Y>() == 16));
+
     X x { 21.3f, "metaprogramming" };
     Y y { 2024, 19.04, '*', { 18.47f, "stateful" } };
 
