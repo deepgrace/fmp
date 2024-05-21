@@ -129,7 +129,7 @@ int main(int argc, char* argv[])
     fmp::apply(print_backward, f13);
     std::cout << std::endl;
 
-    // apply a function to every nth field of std::fuples, takes the longest common fields number
+    // apply a function to every nth field of fmp::fuples, takes the longest common fields number
 
     fmp::zip(print_backward, f12, f11, f13);
     std::cout << std::endl;
